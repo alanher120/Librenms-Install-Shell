@@ -1,4 +1,5 @@
 ## 自動化安裝LibreNMS
+work on librenms 1.6.2
 LibreNMS是一套開源的網路裝置管理軟體，其分支於Observium，並且加入了社群版沒有的Alert功能。
 
 本專案為自動化安裝LibreNMS Shell Script。
