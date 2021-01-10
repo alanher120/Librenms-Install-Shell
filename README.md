@@ -1,5 +1,5 @@
 ## 自動化安裝LibreNMS
-work on librenms 1.6.2 <br>
+work on librenms 1.57 <br>
 
 
 # cat /etc/apache2/conf-available/librenms.conf 
