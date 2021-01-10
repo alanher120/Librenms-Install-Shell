@@ -1,6 +1,38 @@
 ## 自動化安裝LibreNMS
 work on librenms 1.6.2 <br>
 
+
+# cat /etc/apache2/conf-available/librenms.conf 
+Alias /librenms /opt/librenms/html
+
+<Directory /opt/librenms/html>
+        Options +FollowSymLinks
+        AllowOverride None
+        <IfVersion >= 2.3>
+                Require all granted
+        </IfVersion> 
+        <IfVersion < 2.3>
+                Order Allow,Deny
+                Allow from all
+        </IfVersion>
+
+        AddType application/x-httpd-php .php
+
+        <IfModule mod_php.c>
+                php_flag magic_quotes_gpc Off
+                php_flag short_open_tag On
+                php_flag register_globals Off
+                php_flag register_argc_argv On
+                php_flag track_vars On
+                # this setting is necessary for some locales
+                php_value mbstring.func_overload 0
+                php_value include_path .
+        </IfModule>
+
+        DirectoryIndex index.php
+</Directory>
+
+
 LibreNMS - In PackageManifest.php line 122: Undefined index: name ( 問題修正 )
 http://www.esafe360.com/2020/12/librenms-in-packagemanifestphp-line-122.html
 > 安裝 composer
