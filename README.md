@@ -1,5 +1,31 @@
 ## 自動化安裝LibreNMS
 work on librenms 1.6.2 <br>
+
+LibreNMS - In PackageManifest.php line 122: Undefined index: name ( 問題修正 )
+http://www.esafe360.com/2020/12/librenms-in-packagemanifestphp-line-122.html
+> 安裝 composer
+
+composer install
+
+> 更新 composer
+
+composer update
+
+> 編輯 PackageManifest.php
+
+sudo vi vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php
+
+====================================
+
+$packages = json_decode($this->files->get($path), true);    <== 搜尋這條
+
+$installed = json_decode($this->files->get($path), true);    <== 加入這條
+
+$packages = $installed['packages'] ?? $installed;    <== 加入這條
+
+====================================
+
+composer install
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php composer.phar install
